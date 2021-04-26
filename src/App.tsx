@@ -8,9 +8,9 @@ const app: React.FC = () => {
   return (
     <Layout>
       <Switch>
-        <Route exact component={FeedScreen} path="/" />
+        <Route exact component={FeedScreen} path="/home" />
         <Route exact component={MessagesScreen} path="/messages" />
-        <Redirect to="/" />
+        <Redirect to="/home" />
       </Switch>
     </Layout>
   );
