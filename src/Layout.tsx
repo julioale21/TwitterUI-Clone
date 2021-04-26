@@ -95,40 +95,45 @@ const Layout: React.FC = ({ children }) => {
   return (
     <Container alignSelf="center" height="100%" maxWidth="container.lg" paddingX={0}>
       <Stack direction="row" divider={<StackDivider />} height="100%">
-        <Stack minWidth={72} paddingX={6} paddingY={3} spacing={8}>
-          <Link to="/home">
-            <Icon
-              as={FaTwitter}
-              color={logoColor}
-              height={7}
-              width={7}
-              onClick={toggleColorMode}
-            ></Icon>
-          </Link>
-          <Stack fontSize="xl" fontWeight="bold" spacing={7}>
-            {LINKS.map((link) => (
-              <Link key={link.href} to={link.href}>
-                <Stack
-                  alignItems="center"
-                  color={pathname === link.href ? "primary.500" : "inherit"}
-                  direction="row"
-                  spacing={5}
-                >
-                  <Icon
-                    as={pathname === link.href ? link.activeIcon : link.inactiveIcon}
-                    height={6}
-                    width={6}
-                  />
-                  <Text fontSize="lg" fontWeight="bold">
-                    {link.text}
-                  </Text>
-                </Stack>
-              </Link>
-            ))}
+        <Stack>
+          <Stack minWidth={72} paddingX={6} paddingY={3} spacing={8}>
+            <Link to="/home">
+              <Icon
+                as={FaTwitter}
+                color={logoColor}
+                height={7}
+                width={7}
+                onClick={toggleColorMode}
+              ></Icon>
+            </Link>
+            <Stack fontSize="xl" fontWeight="bold" spacing={7}>
+              {LINKS.map((link) => (
+                <Link key={link.href} to={link.href}>
+                  <Stack
+                    alignItems="center"
+                    color={pathname === link.href ? "primary.500" : "inherit"}
+                    direction="row"
+                    spacing={5}
+                  >
+                    <Icon
+                      as={pathname === link.href ? link.activeIcon : link.inactiveIcon}
+                      height={6}
+                      width={6}
+                    />
+                    <Text fontSize="lg" fontWeight="bold">
+                      {link.text}
+                    </Text>
+                  </Stack>
+                </Link>
+              ))}
+            </Stack>
+            <Button colorScheme="primary" size="md">
+              Twittear
+            </Button>
           </Stack>
-          <Button colorScheme="primary" size="md">
-            Twittear
-          </Button>
+          <Stack>
+            <Text>Hola</Text>
+          </Stack>
         </Stack>
         <Box paddingX={4}>{children}</Box>
       </Stack>
