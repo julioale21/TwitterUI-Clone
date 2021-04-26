@@ -1,0 +1,85 @@
+import React from "react";
+import { Icon, Stack, Container, Text, Box } from "@chakra-ui/react";
+import {
+  FaBell,
+  FaBookmark,
+  FaEllipsisH,
+  FaEnvelope,
+  FaHashtag,
+  FaHome,
+  FaList,
+  FaTwitter,
+  FaUser,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
+
+const Layout: React.FC = ({ children }) => {
+  return (
+    <Container alignSelf="center" height="100%" maxWidth="container.lg" paddingX={0}>
+      <Stack direction="row" height="100%">
+        <Stack borderRightColor="gray.700" borderRightWidth={1} padding={4} spacing={8}>
+          <Link to="/">
+            <Icon as={FaTwitter} height={6} width={6}></Icon>
+          </Link>
+          <Stack spacing={6}>
+            <Link to="/">
+              <Stack alignItems="center" direction="row" spacing={6}>
+                <Icon as={FaHome} height={6} width={6} />
+                <Text fontSize="lg" fontWeight="bold">
+                  Inicio
+                </Text>
+              </Stack>
+            </Link>
+            <Stack alignItems="center" direction="row" spacing={6}>
+              <Icon as={FaHashtag} height={6} width={6} />
+              <Text fontSize="lg" fontWeight="bold">
+                Explorar
+              </Text>
+            </Stack>
+            <Stack alignItems="center" direction="row" spacing={6}>
+              <Icon as={FaBell} height={6} width={6} />
+              <Text fontSize="lg" fontWeight="bold">
+                Notificaciones
+              </Text>
+            </Stack>
+            <Link to="/messages">
+              <Stack alignItems="center" direction="row" spacing={6}>
+                <Icon as={FaEnvelope} height={6} width={6} />
+                <Text fontSize="lg" fontWeight="bold">
+                  Mensajes
+                </Text>
+              </Stack>
+            </Link>
+            <Stack alignItems="center" direction="row" spacing={6}>
+              <Icon as={FaBookmark} height={6} width={6} />
+              <Text fontSize="lg" fontWeight="bold">
+                Guardados
+              </Text>
+            </Stack>
+            <Stack alignItems="center" direction="row" spacing={6}>
+              <Icon as={FaList} height={6} width={6} />
+              <Text fontSize="lg" fontWeight="bold">
+                Listos
+              </Text>
+            </Stack>
+            <Stack alignItems="center" direction="row" spacing={6}>
+              <Icon as={FaUser} height={6} width={6} />
+              <Text fontSize="lg" fontWeight="bold">
+                Perfil
+              </Text>
+            </Stack>
+            <Stack alignItems="center" direction="row" spacing={6}>
+              <Icon as={FaEllipsisH} height={6} width={6} />
+              <Text fontSize="lg" fontWeight="bold">
+                Mas opciones
+              </Text>
+            </Stack>
+          </Stack>
+        </Stack>
+        <Box paddingX={4}>{children}</Box>
+      </Stack>
+    </Container>
+  );
+};
+
+export default Layout;

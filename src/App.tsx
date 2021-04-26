@@ -1,43 +1,19 @@
-import React, { useState } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
+import Layout from "./Layout";
+import FeedScreen from "./screens/Feed";
+import MessagesScreen from "./screens/Messages";
 
-function App() {
-  const [count, setCount] = useState(0);
-
+const app: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img alt="logo" className="App-logo" src={logo} />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button onClick={() => setCount((count) => count + 1)}>count is: {count}</button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Learn React
-          </a>
-          {" | "}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <Layout>
+      <Switch>
+        <Route exact component={FeedScreen} path="/" />
+        <Route exact component={MessagesScreen} path="/messages" />
+        <Redirect to="/" />
+      </Switch>
+    </Layout>
   );
-}
+};
 
-export default App;
+export default app;
