@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, Stack, Container, Text, Box } from "@chakra-ui/react";
+import { Icon, Stack, Container, Text, Box, Button } from "@chakra-ui/react";
 import {
   FaBell,
   FaBookmark,
@@ -17,7 +17,14 @@ const Layout: React.FC = ({ children }) => {
   return (
     <Container alignSelf="center" height="100%" maxWidth="container.lg" paddingX={0}>
       <Stack direction="row" height="100%">
-        <Stack borderRightColor="gray.700" borderRightWidth={1} padding={4} spacing={8}>
+        <Stack
+          borderRightColor="gray.700"
+          borderRightWidth={1}
+          paddingLeft={4}
+          paddingRight={12}
+          paddingY={4}
+          spacing={8}
+        >
           <Link to="/">
             <Icon as={FaTwitter} height={6} width={6}></Icon>
           </Link>
@@ -75,6 +82,9 @@ const Layout: React.FC = ({ children }) => {
               </Text>
             </Stack>
           </Stack>
+          <Button colorScheme="primary" size="lg">
+            Twittear
+          </Button>
         </Stack>
         <Box paddingX={4}>{children}</Box>
       </Stack>
