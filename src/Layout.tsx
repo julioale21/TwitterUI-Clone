@@ -6,6 +6,7 @@ import {
   Text,
   Box,
   Button,
+  Image,
   StackDivider,
   useColorMode,
   useColorModeValue,
@@ -90,12 +91,13 @@ const LINKS: ListLink[] = [
 const Layout: React.FC = ({ children }) => {
   const { toggleColorMode } = useColorMode();
   const logoColor = useColorModeValue("primary.500", undefined);
+  const userColor = useColorModeValue(undefined, "white");
   const { pathname } = useLocation();
 
   return (
-    <Container alignSelf="center" height="100%" maxWidth="container.lg" paddingX={0}>
+    <Container alignSelf="center" height="100%" maxWidth="container.xl" paddingX={0}>
       <Stack direction="row" divider={<StackDivider />} height="100%">
-        <Stack>
+        <Stack justifyContent="space-between">
           <Stack minWidth={72} paddingX={6} paddingY={3} spacing={8}>
             <Link to="/home">
               <Icon
@@ -131,8 +133,19 @@ const Layout: React.FC = ({ children }) => {
               Twittear
             </Button>
           </Stack>
-          <Stack>
-            <Text>Hola</Text>
+          <Stack alignItems="center" direction="row" justifyContent="space-between" padding={4}>
+            <Stack alignItems="center" direction="row">
+              <Image borderRadius="50%" height={10} src="//placehold.it/64x64" width={10} />
+              <Stack spacing={0}>
+                <Text color={userColor} fontSize="sm" fontWeight="bold">
+                  julio romero
+                </Text>
+                <Text color="gray.600" fontSize="sm">
+                  @julioale21
+                </Text>
+              </Stack>
+            </Stack>
+            <Icon as={BsThreeDots} />
           </Stack>
         </Stack>
         <Box paddingX={4}>{children}</Box>
