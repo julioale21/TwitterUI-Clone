@@ -16,6 +16,7 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import { BsPlus, BsStar } from "react-icons/bs";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   AiOutlineSmile,
   AiOutlineGif,
@@ -24,11 +25,8 @@ import {
 } from "react-icons/ai";
 import { RiBarChartHorizontalLine } from "react-icons/ri";
 
-const TWEETS = Array(12)
-  .fill(true)
-  .map((_, index) => index);
-
 const FeedScreen: React.FC = () => {
+  const [tweets, setTweets] = React.useState<string[]>([]);
   const progressColor = useColorModeValue("gray.50", "whiteAlpha.300");
 
   return (
@@ -93,7 +91,12 @@ const FeedScreen: React.FC = () => {
                     />
                   </Box>
                 </Stack>
-                <Button colorScheme="primary">Twittear</Button>
+                <Button
+                  colorScheme="primary"
+                  onClick={() => setTweets((tweets) => tweets.concat(String(+new Date())))}
+                >
+                  Twittear
+                </Button>
               </Stack>
             </Stack>
           </Stack>
@@ -112,18 +115,54 @@ const FeedScreen: React.FC = () => {
           }}
           width="100%"
         >
-          {TWEETS.map((index) => (
-            <Stack key={index} direction="row" padding={4} spacing={4} width="100%">
-              <SkeletonCircle height={12} minHeight={12} minWidth={12} width={12} />
-              <Stack spacing={4} width="100%">
-                <Stack alignItems="flex-end" direction="row" spacing={2}>
-                  <Skeleton height={6} width="120px" />
-                  <Skeleton height={3} width="80px" />
+          <AnimatePresence>
+            {tweets.map((id) => (
+              <Stack
+                key={id}
+                animate={{ scale: 1 }}
+                as={motion.div}
+                direction="row"
+                exit={{ scale: 0 }}
+                initial={{ scale: 0 }}
+                layoutId={String(id)}
+                padding={4}
+                spacing={4}
+                width="100%"
+                onClick={() => setTweets((tweets) => tweets.filter((tweet) => tweet !== id))}
+              >
+                <SkeletonCircle
+                  endColor="whiteAlpha.200"
+                  height={12}
+                  minHeight={12}
+                  minWidth={12}
+                  startColor="whiteAlpha.200"
+                  width={12}
+                />
+                <Stack spacing={4} width="100%">
+                  <Stack alignItems="flex-end" direction="row" spacing={2}>
+                    <Skeleton
+                      endColor="whiteAlpha.200"
+                      height={6}
+                      startColor="whiteAlpha.200"
+                      width="120px"
+                    />
+                    <Skeleton
+                      endColor="whiteAlpha.200"
+                      height={3}
+                      startColor="whiteAlpha.200"
+                      width="80px"
+                    />
+                  </Stack>
+                  <SkeletonText
+                    endColor="whiteAlpha.50"
+                    height={36}
+                    noOfLines={6}
+                    startColor="whiteAlpha.50"
+                  />
                 </Stack>
-                <SkeletonText height={36} noOfLines={6} />
               </Stack>
-            </Stack>
-          ))}
+            ))}
+          </AnimatePresence>
         </Stack>
       </Stack>
     </Stack>
